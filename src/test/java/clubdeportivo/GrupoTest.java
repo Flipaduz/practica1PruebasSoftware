@@ -52,7 +52,7 @@ public class GrupoTest {
 
     // Si el número de plazas se actualiza con un valor negativo, devolvemos excepción
     @Test
-    public void actualizarPlazas_PlazasNegativas_DevuelveUnaExcepcion() throws ClubException
+    public void actualizarPlazas_PlazasNegativas_DevuelveExcepcion() throws ClubException
     {
          // Arrange:
          String codigo = "1";
@@ -68,9 +68,27 @@ public class GrupoTest {
          });        
     }
 
+    // Si el número de plazas se actualiza con un valor cero, devolvemos excepción
+    @Test
+    public void actualizarPlazas_CeroPlazas_DevuelveExcepcion() throws ClubException
+    {
+        // Arrange:
+        String codigo = "1";
+        String actividad = "Natación";
+        int nplazas = 7;
+        int nmatriculados = 5;
+        double tarifa = 12;
+        Grupo g = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
+
+        // Assert:
+        assertThrows(ClubException.class, ()->{
+            g.actualizarPlazas(0);
+        });
+    }
+
     // Si el número de plazas es menor que el número de matriculados, devolvemos excepción
     @Test
-    public void actualizarPlazas_MasMatriculadosQuePlazas_DevuelveUnaExcepcion() throws ClubException
+    public void actualizarPlazas_MasMatriculadosQuePlazas_DevuelveExcepcion() throws ClubException
     {
          // Arrange:
          String codigo = "1";
@@ -128,6 +146,23 @@ public class GrupoTest {
         });
     }
 
+    // Si se intentan matricular cero personas, devolvemos excepción
+    @Test
+    public void matricular_NumeroDeMatriculadosCero_DevuelveExcepcion() throws ClubException{
+        // Arrange:
+        String codigo = "1";
+        String actividad = "Natación";
+        int nplazas = 7;
+        int nmatriculados = 5;
+        double tarifa = 12;
+        Grupo g = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
+
+        // Assert:
+        assertThrows(ClubException.class, ()->{
+            g.matricular(0);
+        });
+    }
+
     // Si se pasan las plazas, devolvemos excepción
     @Test
     public void matricular_SuperaPlazas_DevuelveExcepcion() throws ClubException{
@@ -163,5 +198,5 @@ public class GrupoTest {
 
         // Assert:
         assertEquals(nmatriculados + nuevosMatriculados, g.getMatriculados());
-    }    
+    }
 }
