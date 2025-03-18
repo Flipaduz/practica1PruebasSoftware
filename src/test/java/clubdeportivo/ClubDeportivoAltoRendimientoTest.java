@@ -15,25 +15,37 @@ public class ClubDeportivoAltoRendimientoTest {
      // No podemos crear club de alto rendimiento con el incremento nulo DONE
      // No podemos crear club de alto rendimiento con el incremento negativo DONE
      // Si los datos son correctos, el club se crea con éxito, es decir, no se lanza ninguna excepción
+
     @Test
-    @DisplayName("No podemos crear un club con el máximo número de plazas nulo")
-    public void ClubDeportivoAltoRendimiento_MaximoCero_DevuelveExcepcion(){
+    @DisplayName("No podemos crear un club con el máximo número de plazas nulo en el Constructor1")
+    public void ClubDeportivoAltoRendimiento_MaximoCeroConstructor1_DevuelveExcepcion(){
         // Arrange:
         String nombre = "Atlético";
         int max = 0;
         double inc = 10;
-        // Assert:
-        // Comprobamos los dos constructores: En el primer caso no tiene grupos, en el segundo se crea con dos grupos
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             new ClubDeportivoAltoRendimiento(nombre, max, inc);
         });
-        assertThrows(ClubException.class, ()->{
-             new ClubDeportivoAltoRendimiento(nombre, 2, max, inc);
-         });
     }
+
     @Test
-    @DisplayName("No podemos crear un club con el máximo número de plazas es negativo")
-    public void ClubDeportivoAltoRendimiento_MaximoNegativo_DevuelveExcepcion(){
+    @DisplayName("No podemos crear un club con el máximo número de plazas nulo en el Constructor2")
+    public void ClubDeportivoAltoRendimiento_MaximoCeroConstructor2_DevuelveExcepcion(){
+        // Arrange:
+        String nombre = "Atlético";
+        int max = 0;
+        double inc = 10;
+        // Act & Assert:
+        assertThrows(ClubException.class, ()->{
+            new ClubDeportivoAltoRendimiento(nombre, 2, max, inc);
+        });
+    }
+
+
+    @Test
+    @DisplayName("No podemos crear un club con el máximo número de plazas es negativo en Constructor1")
+    public void ClubDeportivoAltoRendimiento_MaximoNegativoConstructor1_DevuelveExcepcion(){
         // Arrange:
         String nombre = "Atlético";
         int max = -1;
@@ -43,13 +55,24 @@ public class ClubDeportivoAltoRendimientoTest {
         assertThrows(ClubException.class, ()->{
             new ClubDeportivoAltoRendimiento(nombre, max, inc);
          });
-         assertThrows(ClubException.class, ()->{
-            new ClubDeportivoAltoRendimiento(nombre, 2, max, inc);
-          });
     }
+
     @Test
-    @DisplayName("No podemos crear un club con el incremento nulo")
-    public void ClubDeportivoAltoRendimiento_IncrementoNulo_DevuelveExcepción(){
+    @DisplayName("No podemos crear un club con el máximo número de plazas es negativo en Constructor2")
+    public void ClubDeportivoAltoRendimiento_MaximoNegativoConstructor2_DevuelveExcepcion(){
+        // Arrange:
+        String nombre = "Atlético";
+        int max = -1;
+        double inc = 10;
+        // Act & Assert:
+        assertThrows(ClubException.class, ()->{
+            new ClubDeportivoAltoRendimiento(nombre, 2, max, inc);
+        });
+    }
+
+    @Test
+    @DisplayName("No podemos crear un club con el incremento nulo en Constructor1")
+    public void ClubDeportivoAltoRendimiento_IncrementoNuloConstructor1_DevuelveExcepción(){
         // Arrange:
         String nombre = "Atlético";
         int max = 10;
@@ -59,49 +82,80 @@ public class ClubDeportivoAltoRendimientoTest {
         assertThrows(ClubException.class, ()->{
              new ClubDeportivoAltoRendimiento(nombre, max, inc);
          });
-         assertThrows(ClubException.class, ()->{
-             new ClubDeportivoAltoRendimiento(nombre, 2, max, inc);
-          });
     }
+
     @Test
-    @DisplayName("No podemos crear un club con el incremento negativo")
-    public void ClubDeportivoAltoRendimiento_IncrementoNegativo_DevuelveExcepcion(){
+    @DisplayName("No podemos crear un club con el incremento nulo en Constructor2")
+    public void ClubDeportivoAltoRendimiento_IncrementoNuloConstructor2_DevuelveExcepción(){
+        // Arrange:
+        String nombre = "Atlético";
+        int max = 10;
+        double inc = 0;
+        // Act & Assert:
+        assertThrows(ClubException.class, ()->{
+            new ClubDeportivoAltoRendimiento(nombre, 2, max, inc);
+        });
+    }
+
+    @Test
+    @DisplayName("No podemos crear un club con el incremento negativo en Constructor1")
+    public void ClubDeportivoAltoRendimiento_IncrementoNegativoConstructor1_DevuelveExcepcion(){
         // Arrange:
         String nombre = "Atlético";
         int max = 10;
         double inc = -1;
-        // Assert:
-        // Comprobamos los dos constructores: En el primer caso no tiene grupos, en el segundo se crea con dos grupos
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             new ClubDeportivoAltoRendimiento(nombre, max, inc);
          });
-         assertThrows(ClubException.class, ()->{
-            new ClubDeportivoAltoRendimiento(nombre, 2, max, inc);
-          });
     }
 
     @Test
-    @DisplayName("Si los datos son correctos, el club se crea con éxito, es decir, no se lanza ninguna excepción")
-    public void ClubDeportivoAltoRendimiento_DatosCorrectos_SeCreaElClub(){
+    @DisplayName("No podemos crear un club con el incremento negativo en Constructor2")
+    public void ClubDeportivoAltoRendimiento_IncrementoNegativoConstructor2_DevuelveExcepcion(){
+        // Arrange:
+        String nombre = "Atlético";
+        int max = 10;
+        double inc = -1;
+        // Act & Assert:
+        assertThrows(ClubException.class, ()->{
+            new ClubDeportivoAltoRendimiento(nombre, 2, max, inc);
+        });
+    }
+
+    @Test
+    @DisplayName("Si los datos son correctos, el club se crea con éxito, es decir, no se lanza ninguna excepción en Constructor1")
+    public void ClubDeportivoAltoRendimiento_DatosCorrectosConstructor1_SeCreaElClub(){
         // Arrange:
         String nombre = "Atlético";
         int max = 10;
         double inc = 5;
-        // Assert:
-        // Comprobamos los dos constructores: En el primer caso no tiene grupos, en el segundo se crea con dos grupos
+        //Act & Assert:
         assertDoesNotThrow(()->{
              new ClubDeportivoAltoRendimiento(nombre, max, inc);
          });
     }
 
     @Test
-    @DisplayName("Si el arreglo de datos es nulo, devolvemos una excepción")
+    @DisplayName("Si los datos son correctos, el club se crea con éxito, es decir, no se lanza ninguna excepción en Constructor2")
+    public void ClubDeportivoAltoRendimiento_DatosCorrectosConstructor2_SeCreaElClub(){
+        // Arrange:
+        String nombre = "Atlético";
+        int max = 10;
+        double inc = 5;
+        //Act & Assert:
+        assertDoesNotThrow(()->{
+            new ClubDeportivoAltoRendimiento(nombre,2, max, inc);
+        });
+    }
+
+    @Test
+    @DisplayName("Si el array de datos es nulo, devolvemos una excepcion")
     public void anyadirActividad_DatosNulos_DevuelveExcepcion() throws ClubException{
         //Arrange:
         String datos[] = null;
         ClubDeportivoAltoRendimiento clubAltoRendimiento = new ClubDeportivoAltoRendimiento("Complejo Deportivo", 120, 10);
-        // Assert:
-        // Comprobamos los dos constructores: En el primer caso no tiene grupos, en el segundo se crea con dos grupos     
+        //Act & Assert:
         assertThrows(ClubException.class , () -> {
             clubAltoRendimiento.anyadirActividad(datos);
         });
@@ -148,7 +202,7 @@ public class ClubDeportivoAltoRendimientoTest {
         datos[3] = "0"; // Matriculados
         datos[4] = "3"; //Tarifa
         ClubDeportivoAltoRendimiento clubAltoRendimiento = new ClubDeportivoAltoRendimiento("Complejo Deportivo", 2, 12,10);        
-        // Assert & Act:
+        //Act & Assert:
         assertThrows(ClubException.class, ()->{
             clubAltoRendimiento.anyadirActividad(datos);
         });    
@@ -163,7 +217,7 @@ public class ClubDeportivoAltoRendimientoTest {
         datos[3] = "cero"; // Matriculados
         datos[4] = "3";   //Tarifa
         ClubDeportivoAltoRendimiento clubAltoRendimiento = new ClubDeportivoAltoRendimiento("Complejo Deportivo", 12, 10);        
-        // Assert & Act:
+        //Act & Assert:
         assertThrows(ClubException.class, ()->{
             clubAltoRendimiento.anyadirActividad(datos);
         });  
@@ -179,7 +233,7 @@ public class ClubDeportivoAltoRendimientoTest {
         datos[3] = "0"; // Matriculados
         datos[4] = "tres"; //Tarifa
         ClubDeportivoAltoRendimiento clubAltoRendimiento = new ClubDeportivoAltoRendimiento("Complejo Deportivo", 12, 10);        
-        // Assert & Act:
+        //Act & Assert:
         assertThrows(ClubException.class, ()->{
             clubAltoRendimiento.anyadirActividad(datos);
         });  
@@ -241,5 +295,4 @@ public class ClubDeportivoAltoRendimientoTest {
         // Assert:
         assertEquals(excpected, ingresos);
     }
-    
 }
