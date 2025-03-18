@@ -4,18 +4,22 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
+
 public class GrupoTest {
 
     // Constructor:
     // No podemos crear grupo con plazas negativas DONE
-    // No podemos crear grupo con plazas nulas DONE
+    // No podemos crear grupo con cero plazas DONE
     // No podemos crear grupo con número de matriculados negativo DONE
-    // No podemos crear grupo con tarifa nula DONE
+    // No podemos crear grupo con tarifa cero DONE
     // No podemos crear grupo con tarifa negativa DONE
     // No podemos crear un grupo  si el número de matriculados supera las plazas disponibles DONE
+    // Si todos los datos son correctos, se crea el grupo 
 
 
     @Test
+    @DisplayName("No podemos crear grupo con plazas negativas")
     public void Grupo_plazasNegativas_DevolvemosExcepcion(){
         // Arrange:
         String codigo = "1";
@@ -30,6 +34,7 @@ public class GrupoTest {
     }
 
     @Test
+    @DisplayName("No podemos crear grupo con cero plazas")
     public void Grupo_CeroPlazas_DevolvemosExcepcion(){
         // Arrange:
         String codigo = "1";
@@ -44,6 +49,7 @@ public class GrupoTest {
     }
 
     @Test
+    @DisplayName("No podemos crear grupo con número de matriculados negativo")
     public void Grupo_MatriculadosNegativo_DevolvemosExcepcion(){
         // Arrange:
         String codigo = "1";
@@ -58,7 +64,8 @@ public class GrupoTest {
     }
 
     @Test
-    public void Grupo_TarifaNula_DevolvemosExcepcion(){
+    @DisplayName("No podemos crear grupo con tarifa cero")
+    public void Grupo_TarifCero_DevolvemosExcepcion(){
         // Arrange:
         String codigo = "1";
         String actividad = "Natación";
@@ -72,6 +79,7 @@ public class GrupoTest {
     }
 
     @Test
+    @DisplayName("No podemos crear grupo con tarifa negativa")
     public void Grupo_TarifaNegativa_DevolvemosExcepcion(){
         // Arrange:
         String codigo = "1";
@@ -86,6 +94,7 @@ public class GrupoTest {
     }
 
     @Test
+    @DisplayName("No podemos crear grupo con más matriculados que plazos")
     public void Grupo_MasMatriculadosQuePlazas_DevolvemosExcepcion(){
         // Arrange:
         String codigo = "1";
@@ -100,6 +109,7 @@ public class GrupoTest {
     }
 
     @Test
+    @DisplayName("Si los datos son correctos se crea el grupo con los datos proporcionados")
     public void Grupo_DatosCorrectos_SeCreaElGrupo() throws ClubException{
         //Arrange:
         String codigo = "1";
@@ -124,7 +134,8 @@ public class GrupoTest {
     // Si no hay plazas libres devolvemos 0 DONE
     // Si hay plazas libres devolvemos el número de plazas libres DONE
 
-     @Test
+    @Test
+    @DisplayName("Si no hay plazas libres devolvemos 0")
     public void plazasLibres_TodasPlazasCubiertas_DevuelveCeroPlazasLibres() throws ClubException{
         // Arrange:
         String codigo = "1";
@@ -139,9 +150,8 @@ public class GrupoTest {
         assertEquals(0, plazasLibres);
     }
 
-
-    // Si hay plazas libres devolvemos el número de plazas libres
     @Test
+    @DisplayName("Si hay plazas libres devolvemos el número de plazas libres")
     public void plazasLibres_NoTodasPlazasCubiertas_DevuelvePlazasLibres() throws ClubException{
          // Arrange:
          String codigo = "1";
@@ -166,6 +176,7 @@ public class GrupoTest {
 
 
     @Test
+    @DisplayName("Si intentamos actualizar el número de plazas con valor negativo, devolvemos excepción")
     public void actualizarPlazas_PlazasNegativas_DevuelveExcepcion() throws ClubException
     {
          // Arrange:
@@ -176,14 +187,15 @@ public class GrupoTest {
          double tarifa = 12;
          Grupo g = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
          
-         // Assert:
+         // Act & Assert:
          assertThrows(ClubException.class, ()->{
             g.actualizarPlazas(-1);
          });        
     }
 
-    // Si el número de plazas se actualiza con valor nulo, devolvemos excepción
+
     @Test
+    @DisplayName("Si el número de plazas se actualiza con cero , devolvemos excepción")
     public void actualizarPlazas_CeroPlazas_DevuelveExcepcion() throws ClubException
     {
         // Arrange:
@@ -194,14 +206,14 @@ public class GrupoTest {
         double tarifa = 12;
         Grupo g = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
 
-        // Assert:
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             g.actualizarPlazas(0);
         });
     }
 
-    // Si el número de plazas es menor que el número de matriculados, devolvemos excepción
     @Test
+    @DisplayName("Si el número de plazas es menor que el número de matriculados, devolvemos excepción")
     public void actualizarPlazas_MasMatriculadosQuePlazas_DevuelveExcepcion() throws ClubException
     {
          // Arrange:
@@ -218,8 +230,8 @@ public class GrupoTest {
          });        
     }
 
-    // Si el número de plazas supera el número de matriculados, se actualiza el número de de plazas
     @Test
+    @DisplayName("Si el número de plazas supera el número de matriculados, se actualiza el número de de plazas")
     public void actualizarPlazas_PlazasSuperanMatriculados_NuevoNumeroDePlazas() throws ClubException
     {
          // Arrange:
@@ -246,6 +258,7 @@ public class GrupoTest {
     // Si hay plazas disponibles, matriculamos a las personas. DONE
     
     @Test
+    @DisplayName("Si se intenta matricular el número negativo de personas, devolvemos excepción")
     public void matricular_NumeroDeMatriculadosNegativo_DevuelveExcepcion() throws ClubException{
         // Arrange:
         String codigo = "1";
@@ -254,14 +267,15 @@ public class GrupoTest {
         int nmatriculados = 5;
         double tarifa = 12;
         Grupo g = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);        
-        // Assert:
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             g.matricular(-12);
         });
     }
 
-    // Si se intentan matricular cero personas, devolvemos excepción
+    
     @Test
+    @DisplayName("Si se intentan matricular cero personas, devolvemos excepción")
     public void matricular_NumeroDeMatriculadosCero_DevuelveExcepcion() throws ClubException{
         // Arrange:
         String codigo = "1";
@@ -271,14 +285,15 @@ public class GrupoTest {
         double tarifa = 12;
         Grupo g = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
 
-        // Assert:
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             g.matricular(0);
         });
     }
 
-    // Si sobrepasamos las plazas disponible, devolvemos una excepción 
+    
     @Test
+    @DisplayName("Si sobrepasamos las plazas disponible, devolvemos una excepción ")
     public void matricular_SuperaPlazas_DevuelveExcepcion() throws ClubException{
         // Arrange:
         String codigo = "1";
@@ -288,14 +303,15 @@ public class GrupoTest {
         double tarifa = 12;
         Grupo g = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
 
-        // Assert:
+        // Act &Assert:
         assertThrows(ClubException.class, ()->{
             g.matricular(12);
         });
     }
 
-    // Si hay plazas, actualizamos el número de matriculados en el grupo 
+    
     @Test
+    @DisplayName("Si hay plazas, actualizamos el número de matriculados en el grupo ")
     public void matricular_HayPlazas_ActualizamosElNumeroDeMatriculados() throws ClubException{
         // Arrange:
         String codigo = "1";

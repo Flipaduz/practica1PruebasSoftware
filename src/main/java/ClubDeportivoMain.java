@@ -5,7 +5,10 @@ import clubdeportivo.Grupo;
 public class ClubDeportivoMain {
 	public static void main(String[] args) {
 		String [] grupo1 = {"123A","Kizomba","10","10","25.0"};
-		
+
+		System.out.println(null instanceof Integer);
+
+		/*
 		try {
 			ClubDeportivo club = new ClubDeportivo("UMA",1);
 			Grupo pilates = new Grupo("456B","Pilates",8,5,50.0);
@@ -13,10 +16,17 @@ public class ClubDeportivoMain {
 			club.anyadirActividad(pilates);
 			System.out.println(club);			
 			System.out.println("Ingresos: " + club.ingresos());
+
 			
-		} catch (ClubException e) {
+		} 
+		catch (ClubException e) {
 			System.out.println(e.getMessage());
 		}
+		catch(NumberFormatException e){
+			System.out.println("Formato de entrada incorrecto");
+		}
+		*/
+		
 		
 	}
 }

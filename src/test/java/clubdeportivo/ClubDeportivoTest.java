@@ -4,12 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
+
 public class ClubDeportivoTest {
-    public ClubDeportivoTest() throws ClubException {
-    }
 
     // No podemos crear club con la cantidad de grupos negativa
     @Test
+    @DisplayName("No podemos crear club con la cantidad de grupos negativa")
     public void ClubDeportivo_CapacidadGruposNegativa_DevuelveExcepcion(){
         // Arrange
         String nombre = "CDTorremolinos";
@@ -19,12 +20,13 @@ public class ClubDeportivoTest {
             new ClubDeportivo(nombre, ngrupos);
         });
     }
-    // No podemos crear club con la cantidad de grupos nula
+    
     @Test
+    @DisplayName("No podemos crear club con la cantidad de grupos cero")
     public void ClubDeportivo_CapacidadGruposCero_DevuelveExcepcion(){
         // Arrange
         String nombre = "CDTorremolinos";
-        int ngrupos = -10;
+        int ngrupos = 0;
         // Act & Assert 
         assertThrows(ClubException.class, ()->{
             new ClubDeportivo(nombre, ngrupos);
@@ -54,20 +56,21 @@ public class ClubDeportivoTest {
     // Datos correctos TODO
 
     @Test
+    @DisplayName("Al intentar crear un grupo con el arreglo nulo, devolvemos una excepción")
     public void anyadirActividadDatos_ArrayNull_DevuelveExepcion() throws ClubException {
         //Arange
         String[] datos = null;
-
         String nombre = "CDTorremolinos";
         int ngrupos = 5;
         ClubDeportivo cd = new ClubDeportivo(nombre, ngrupos);
-        //Assert
+        //Act & Assert
         assertThrows(ClubException.class, () -> {
             cd.anyadirActividad(datos);
         });
     }
 
     @Test
+    @DisplayName("Al intentar crear un grupo con datos insuficientes, devolvemos una excepción")
     public void anyadirActividadDatos_ArrayPocosElementos_DevuelveExepcion() throws ClubException {
         //Arange
         // Grupo con actividad:
@@ -79,7 +82,7 @@ public class ClubDeportivoTest {
         String nombre = "CDTorremolinos";
         int ngrupos = 5;
         ClubDeportivo cd = new ClubDeportivo(nombre, ngrupos);
-        //Assert
+        //Act & Assert
         assertThrows(ClubException.class, () -> {
             cd.anyadirActividad(datos);
         });
@@ -103,51 +106,8 @@ public class ClubDeportivoTest {
         cd.anyadirActividad(datos);
         //Assert:
         assertTrue(cd.toString().contains("("+ codigo + " - "+actividad+" - " + tarifa + " euros "+ "- P:" + nplazas +" - M:" +nmatriculados+")"));
-        //assertDoesNotThrow(() -> cd.anyadirActividad(datos));
     }
 
-    //Error en el codigo no se controla este Test.
-    /* 
-    @Test
-    public void anyadirActividadDatos_codigoFormatoIncorrecto_DevuelveExepcion() throws ClubException {
-        //Arange
-        String codigo = "Incorrecto";
-        String actividad = "Natacion";
-        String nplazas = "7";
-        String nmatriculados = "5";
-        String tarifa = "12.0";
-        String[] datos = {codigo, actividad, nplazas, nmatriculados, tarifa};
-
-        String nombre = "CDTorremolinos";
-        int ngrupos = 5;
-        ClubDeportivo cd = new ClubDeportivo(nombre, ngrupos);
-        //Assert
-        assertThrows(ClubException.class, () -> {
-            cd.anyadirActividad(datos);
-        });
-    }
-    */
-
-    /* 
-    @Test
-    public void anyadirActividadDatos_ActividadFormatoIncorrecto_DevuelveExepcion() throws ClubException {
-        //Arange
-        String codigo = "1";
-        String actividad = "01110";
-        String nplazas = "7";
-        String nmatriculados = "5";
-        String tarifa = "12.0";
-        String[] datos = {codigo, actividad, nplazas, nmatriculados, tarifa};
-
-        String nombre = "CDTorremolinos";
-        int ngrupos = 5;
-        ClubDeportivo cd = new ClubDeportivo(nombre, ngrupos);
-        //Assert
-        assertThrows(ClubException.class, () -> {
-            cd.anyadirActividad(datos);
-        });
-    }
-    */
 
     @Test
     public void anyadirActividadDatos_nPlazasFormatoIncorrecto_DevuelveExepcion() throws ClubException {
@@ -206,7 +166,7 @@ public class ClubDeportivoTest {
         });
     }
 
-    //SOlo comprobamos que no hay exepcion no que lo añada a la lista de grupos.
+    //Solo comprobamos que no hay exepcion no que lo añada a la lista de grupos.
     @Test
     public void anyadirActividadDatos_DatosCorrectos_AnyadimosActividad() throws ClubException {
         //Arange
@@ -224,7 +184,7 @@ public class ClubDeportivoTest {
         cd.anyadirActividad(datos);
         //Assert
         assertTrue(cd.toString().contains("("+ codigo + " - "+actividad+" - " + tarifa + " euros "+ "- P:" + nplazas +" - M:" +nmatriculados+")"));
-        //assertDoesNotThrow(() -> cd.anyadirActividad(datos));
+        
     }
 
     // Metodo #2: anyadirActividadConGrupo
@@ -284,9 +244,10 @@ public class ClubDeportivoTest {
         String nombre = "CDTorremolinos";
         int ngrupos = 5;
         ClubDeportivo cd = new ClubDeportivo(nombre, ngrupos);
+        cd.anyadirActividad(g1); // Añadimos grupo donde se imparte la actividad
+        
         //Act
-        cd.anyadirActividad(g1);
-        cd.anyadirActividad(g2);
+        cd.anyadirActividad(g2); // Añadimos otro grupo con la misma actividad
         int plazasActuales = cd.plazasLibres(actividad);
 
         //Assert
@@ -518,7 +479,7 @@ public class ClubDeportivoTest {
     }
 
     @Test
-    public void matricular_MasMatriculadosQuePlazas_OcupanTodasLasPlazas() throws ClubException {
+    public void matricular_DiferentesGruposMismaActividad_SeMatriculanTodos() throws ClubException {
         // Arrange
         // Grupo 1:
         String codigo = "1";
@@ -528,40 +489,19 @@ public class ClubDeportivoTest {
         double tarifa = 12.0;
         Grupo g1 = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         // Grupo 2:
-        codigo = "2";
-        Grupo g2 = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
+        String codigo2 = "2";
+        Grupo g2 = new Grupo(codigo2, actividad, nplazas, nmatriculados, tarifa);
         // Club deportivo:
         String nombre = "CDTorremolinos";
         ClubDeportivo cd = new ClubDeportivo(nombre);
         cd.anyadirActividad(g1);
         cd.anyadirActividad(g2);
+        int plazasIniciales = cd.plazasLibres(actividad);
         int npersonas = 6;
         //Act
         cd.matricular(actividad, npersonas);
         //Assert
-        assertTrue(g1.plazasLibres() == 0 || g2.plazasLibres() == 0);
-    }
-
-    @Test
-    public void matricular_ParametrosCorrectos_MatriculaPersonas() throws ClubException {
-        String codigo = "1";
-        String actividad = "Natacion";
-        int nplazas = 10;
-        int nmatriculados = 5;
-        double tarifa = 12.0;
-        Grupo g = new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
-
-        String nombre = "CDTorremolinos";
-        int ngrupos = 5;
-        ClubDeportivo cd = new ClubDeportivo(nombre, ngrupos);
-        cd.anyadirActividad(g);
-        int npersonas = 3;
-        int expectedPlazasLibres = cd.plazasLibres(actividad) - npersonas;
-        //Act
-        cd.matricular(actividad, npersonas);
-        int actualPlazasLibres = cd.plazasLibres(actividad);
-        //Assert
-        assertEquals(expectedPlazasLibres, actualPlazasLibres);
+        assertEquals(plazasIniciales- npersonas, cd.plazasLibres(actividad));
     }
 
 }

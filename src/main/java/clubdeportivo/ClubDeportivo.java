@@ -36,7 +36,7 @@ public class ClubDeportivo {
 	public void anyadirActividad(String[] datos) throws ClubException {
 		try {
 			/* 
-			Correcion:			
+			 Correcion:			
 			 Hay que considerar el caso cuando el array es nulo y cuando
 			 no nos pasan datos suficiente
 			*/
@@ -45,27 +45,27 @@ public class ClubDeportivo {
 			}
 			else if(datos.length < 5){
 				throw new ClubException("ERROR: no hay datos suficiente para añadir nueva actividad");
-			}
-			else{			
-				int plazas = Integer.parseInt(datos[2]);
-				int matriculados = Integer.parseInt(datos[3]);
-				double tarifa = Double.parseDouble(datos[4]);
-				Grupo g = new Grupo(datos[0], datos[1], plazas, matriculados, tarifa);
-				anyadirActividad(g);
-			}
+			}			
+			int plazas = Integer.parseInt(datos[2]);
+			int matriculados = Integer.parseInt(datos[3]);
+			double tarifa = Double.parseDouble(datos[4]);
+			Grupo g = new Grupo(datos[0], datos[1], plazas, matriculados, tarifa);
+			anyadirActividad(g);
 		} catch (NumberFormatException e) {
+			throw new ClubException("ERROR: formato de número incorrecto");
+		}catch(NullPointerException e){  // Corrección: si los datos son nulos lanza una excepción
 			throw new ClubException("ERROR: formato de número incorrecto");
 		}
 	}
 
 	// Añadimos actividad, añadiendo el grupo directamente
 	public void anyadirActividad(Grupo g) throws ClubException {
-		if (g==null){ // ADDME: anaydido para comprobar los grupos nulos
+		if (g==null){ // Correción: anaydido para comprobar los grupos nulos
 			throw new ClubException("ERROR: el grupo es nulo");
 		}
 		int pos = buscar(g);
 		if (pos == -1) { // El grupo es nuevo
-			// ERROR: hay que manejar la situación cuando nos hemos pasado del límite de grupos permitidos
+			// Correción: hay que manejar la situación cuando nos hemos pasado del límite de grupos permitidos
 			if(ngrupos == grupos.length){
 				throw new ClubException("ERROR: No se puede añadir más grupos de lo que nos permite el club");
 			}
