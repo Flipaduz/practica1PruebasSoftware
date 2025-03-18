@@ -26,6 +26,10 @@ public class ClubDeportivoAltoRendimiento extends ClubDeportivo{
 	// El club de alto rendimiento tiene limitadas las plazas. Si el número de plazas que se recibe como parametro es mayor que el permitido, 
 	// se establece su valor al maximo permitido por grupo para el club.
 	public void anyadirActividad(String[] datos) throws ClubException {
+		// Correción : hay que manejar el caso cuando los datos son nulos
+		if(datos == null){
+			throw new ClubException("ERROR: los datos para añadir la actividad son nulos");
+		}
 		if (datos.length<5) {
 			throw new ClubException ("ERROR: faltan datos");
 		}
