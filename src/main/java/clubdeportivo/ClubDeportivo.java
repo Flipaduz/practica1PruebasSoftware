@@ -35,37 +35,41 @@ public class ClubDeportivo {
 	// Añade actividad con los datos del grupo donde se va a impartir 
 	public void anyadirActividad(String[] datos) throws ClubException {
 		try {
-			/* 
-			 Correcion:			
-			 Hay que considerar el caso cuando el array es nulo y cuando
-			 no nos pasan datos suficiente
-			*/
-			if(datos == null){
+			if(datos == null){ // Corrección #1: arreglo nulo
 				throw new ClubException("ERROR: los datos para añadir actividad son nulos");
 			}
-			else if(datos.length < 5){
+			else if(datos.length < 5){ // Corrección #2: datos insuficiente
 				throw new ClubException("ERROR: no hay datos suficiente para añadir nueva actividad");
+			}
+			// Corrección #3.1:  Elementos del array nulos
+			else if (datos[0] == null){ 
+				throw new ClubException("ERROR: Los datos no pueden ser nulos");
+			}
+			else if(datos[1] == null){
+				throw new ClubException("ERROR: Los datos no pueden ser nulos");
 			}			
 			int plazas = Integer.parseInt(datos[2]);
 			int matriculados = Integer.parseInt(datos[3]);
 			double tarifa = Double.parseDouble(datos[4]);
 			Grupo g = new Grupo(datos[0], datos[1], plazas, matriculados, tarifa);
 			anyadirActividad(g);
-		} catch (NumberFormatException e) {
+
+		}// Corrección #3.2:  Elementos del array nulos 
+		catch (NumberFormatException e) { 
 			throw new ClubException("ERROR: formato de número incorrecto");
-		}catch(NullPointerException e){  // Corrección: si los datos son nulos lanza una excepción
-			throw new ClubException("ERROR: formato de número incorrecto");
+		}catch(NullPointerException e){  // Corrección #3: si los datos son nulos lanza una excepción
+			throw new ClubException("ERROR: Los datos no pueden ser nulos");
 		}
 	}
 
 	// Añadimos actividad, añadiendo el grupo directamente
 	public void anyadirActividad(Grupo g) throws ClubException {
-		if (g==null){ // Correción: anaydido para comprobar los grupos nulos
+		if (g==null){ // Correción #4: anaydido para comprobar los grupos nulos
 			throw new ClubException("ERROR: el grupo es nulo");
 		}
 		int pos = buscar(g);
 		if (pos == -1) { // El grupo es nuevo
-			// Correción: hay que manejar la situación cuando nos hemos pasado del límite de grupos permitidos
+			// Correción #5: hay que manejar la situación cuando nos hemos pasado del límite de grupos permitidos
 			if(ngrupos == grupos.length){
 				throw new ClubException("ERROR: No se puede añadir más grupos de lo que nos permite el club");
 			}
