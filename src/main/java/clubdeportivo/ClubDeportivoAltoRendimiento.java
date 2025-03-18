@@ -2,8 +2,8 @@ package clubdeportivo;
 
 
 public class ClubDeportivoAltoRendimiento extends ClubDeportivo{
-	private int maximoPersonasGrupo;
-	private double incremento;
+	private int maximoPersonasGrupo; 
+	private double incremento;  
 	
 	public ClubDeportivoAltoRendimiento(String nombre, int maximo, double incremento) throws ClubException {
 		super(nombre);
