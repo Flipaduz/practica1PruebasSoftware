@@ -10,7 +10,6 @@ public class ClubDeportivoTest {
     // No podemos crear club con la cantidad de grupos negativa DONE
     // No podemos crear club con la cantidad de grupos cero DONE
     // Si pasamos los datos correctos, se crea el club deportivo DONE
-    //  
 
     @Test
     @DisplayName("No podemos crear club con la cantidad de grupos negativa")

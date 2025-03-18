@@ -9,6 +9,10 @@ import org.junit.jupiter.api.DisplayName;
 public class GrupoTest {
 
     // Constructor:
+    // No podemos crear grupo con código vacío 
+    // No podemos crear grupo con código negativo 
+    // No podemos crear grupo con actividad vacía
+    // No podemos crear grupo con actividad nula 
     // No podemos crear grupo con plazas negativas DONE
     // No podemos crear grupo con cero plazas DONE
     // No podemos crear grupo con número de matriculados negativo DONE
@@ -17,6 +21,64 @@ public class GrupoTest {
     // No podemos crear un grupo  si el número de matriculados supera las plazas disponibles DONE
     // Si todos los datos son correctos, se crea el grupo 
 
+
+
+    @Test
+    @DisplayName("No podemos crear grupo con código nulo")
+    public void Grupo_codigoNulo_DevolvemosExcepcion(){
+        // Arrange:
+        String codigo = null;
+        String actividad = "Natación";
+        int nplazas = 5;
+        int nmatriculados = 5;
+        double tarifa = 12;
+        // Assert & Act:        
+        assertThrows(ClubException.class, ()->{
+            new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
+        });
+    }
+    @Test
+    @DisplayName("No podemos crear grupo con código vacío")
+    public void Grupo_codigoVacio_DevolvemosExcepcion(){
+        // Arrange:
+        String codigo = "";
+        String actividad = "Natación";
+        int nplazas = 5;
+        int nmatriculados = 5;
+        double tarifa = 12;
+        // Assert & Act:        
+        assertThrows(ClubException.class, ()->{
+            new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
+        });
+    }
+    @Test
+    @DisplayName("No podemos crear grupo con actividad nula")
+    public void Grupo_actividadNula_DevolvemosExcepcion(){
+        // Arrange:
+        String codigo = "1";
+        String actividad = null;
+        int nplazas = 5;
+        int nmatriculados = 5;
+        double tarifa = 12;
+        // Assert & Act:        
+        assertThrows(ClubException.class, ()->{
+            new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
+        });
+    }
+    @Test
+    @DisplayName("No podemos crear grupo con actividad vacía")
+    public void Grupo_actividadVacia_DevolvemosExcepcion(){
+        // Arrange:
+        String codigo = "";
+        String actividad = "";
+        int nplazas = 5;
+        int nmatriculados = 5;
+        double tarifa = 12;
+        // Assert & Act:        
+        assertThrows(ClubException.class, ()->{
+            new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
+        });
+    }
 
     @Test
     @DisplayName("No podemos crear grupo con plazas negativas")
@@ -94,7 +156,7 @@ public class GrupoTest {
     }
 
     @Test
-    @DisplayName("No podemos crear grupo con más matriculados que plazos")
+    @DisplayName("No podemos crear un grupo  si el número de matriculados supera las plazas disponibles")
     public void Grupo_MasMatriculadosQuePlazas_DevolvemosExcepcion(){
         // Arrange:
         String codigo = "1";

@@ -8,6 +8,14 @@ public class Grupo {
 	private double tarifa;
 	
 	public Grupo(String codigo, String actividad, int nplazas,  int matriculados, double tarifa) throws ClubException {
+		// Corrección #1: el código no puede ser una cadena vacía ni nula
+		if(codigo == null || codigo == ""){ 
+			throw new ClubException("ERROR: código inválido");
+		}
+		// Corrección #2: la actividad no puede ser una cadena vacía ni nula
+		if(actividad == null || actividad == ""){
+			throw new ClubException("ERROR: el nómbre de la actividad inválido");
+		}
 		if (nplazas<=0 || matriculados<0 || tarifa <=0) {
 			throw new ClubException("ERROR: los datos numéricos no pueden ser menores o iguales que 0.");
 		}

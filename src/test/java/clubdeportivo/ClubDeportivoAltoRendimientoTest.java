@@ -10,14 +10,14 @@ import org.junit.jupiter.api.DisplayName;
 
 public class ClubDeportivoAltoRendimientoTest {
      //Constructor:
-     // No podemos crear club de alto rendimiento si el número de plazas máximas es nulo DONE
-     // No podemos crear club de alto rendimiento si el número de plazas máximas es negativo DONE
-     // No podemos crear club de alto rendimiento con el incremento nulo DONE
-     // No podemos crear club de alto rendimiento con el incremento negativo DONE
-     // Si los datos son correctos, el club se crea con éxito, es decir, no se lanza ninguna excepción
+     // No podemos crear club de alto rendimiento si el número de plazas máximas es cero DONE
+     // No podemos crear club de alto rendimiento si el número de plazas máximas es negativo DONE 
+     // No podemos crear club de alto rendimiento con el incremento cero DONE 
+     // No podemos crear club de alto rendimiento con el incremento negativo DONE 
+     // Si los datos son correctos, el club se crea con éxito, es decir, no se lanza ninguna excepción <-
 
     @Test
-    @DisplayName("No podemos crear un club con el máximo número de plazas nulo en el Constructor1")
+    @DisplayName("No podemos crear club de alto rendimiento si el número de plazas máximas es cero en el Constructor1")
     public void ClubDeportivoAltoRendimiento_MaximoCeroConstructor1_DevuelveExcepcion(){
         // Arrange:
         String nombre = "Atlético";
@@ -30,7 +30,7 @@ public class ClubDeportivoAltoRendimientoTest {
     }
 
     @Test
-    @DisplayName("No podemos crear un club con el máximo número de plazas nulo en el Constructor2")
+    @DisplayName("No podemos crear club de alto rendimiento si el número de plazas máximas es cero en el Constructor2")
     public void ClubDeportivoAltoRendimiento_MaximoCeroConstructor2_DevuelveExcepcion(){
         // Arrange:
         String nombre = "Atlético";
@@ -42,9 +42,8 @@ public class ClubDeportivoAltoRendimientoTest {
         });
     }
 
-
     @Test
-    @DisplayName("No podemos crear un club con el máximo número de plazas es negativo en Constructor1")
+    @DisplayName("No podemos crear club de alto rendimiento si el número de plazas máximas es negativo en Constructor1")
     public void ClubDeportivoAltoRendimiento_MaximoNegativoConstructor1_DevuelveExcepcion(){
         // Arrange:
         String nombre = "Atlético";
@@ -58,7 +57,7 @@ public class ClubDeportivoAltoRendimientoTest {
     }
 
     @Test
-    @DisplayName("No podemos crear un club con el máximo número de plazas es negativo en Constructor2")
+    @DisplayName("No podemos crear club de alto rendimiento si el número de plazas máximas es negativo en Constructor2")
     public void ClubDeportivoAltoRendimiento_MaximoNegativoConstructor2_DevuelveExcepcion(){
         // Arrange:
         String nombre = "Atlético";
@@ -69,9 +68,9 @@ public class ClubDeportivoAltoRendimientoTest {
             new ClubDeportivoAltoRendimiento(nombre, 2, max, inc);
         });
     }
-
+    
     @Test
-    @DisplayName("No podemos crear un club con el incremento nulo en Constructor1")
+    @DisplayName("No podemos crear club de alto rendimiento con el incremento cero en Constructor1")
     public void ClubDeportivoAltoRendimiento_IncrementoNuloConstructor1_DevuelveExcepción(){
         // Arrange:
         String nombre = "Atlético";
@@ -85,7 +84,7 @@ public class ClubDeportivoAltoRendimientoTest {
     }
 
     @Test
-    @DisplayName("No podemos crear un club con el incremento nulo en Constructor2")
+    @DisplayName("No podemos crear club de alto rendimiento con el incremento cero o en Constructor2")
     public void ClubDeportivoAltoRendimiento_IncrementoNuloConstructor2_DevuelveExcepción(){
         // Arrange:
         String nombre = "Atlético";
@@ -98,7 +97,7 @@ public class ClubDeportivoAltoRendimientoTest {
     }
 
     @Test
-    @DisplayName("No podemos crear un club con el incremento negativo en Constructor1")
+    @DisplayName("No podemos crear club de alto rendimiento con el incremento negativo en Constructor1")
     public void ClubDeportivoAltoRendimiento_IncrementoNegativoConstructor1_DevuelveExcepcion(){
         // Arrange:
         String nombre = "Atlético";
@@ -111,7 +110,7 @@ public class ClubDeportivoAltoRendimientoTest {
     }
 
     @Test
-    @DisplayName("No podemos crear un club con el incremento negativo en Constructor2")
+    @DisplayName("No podemos crear club de alto rendimiento con el incremento negativo en Constructor2")
     public void ClubDeportivoAltoRendimiento_IncrementoNegativoConstructor2_DevuelveExcepcion(){
         // Arrange:
         String nombre = "Atlético";
@@ -122,7 +121,7 @@ public class ClubDeportivoAltoRendimientoTest {
             new ClubDeportivoAltoRendimiento(nombre, 2, max, inc);
         });
     }
-
+    
     @Test
     @DisplayName("Si los datos son correctos, el club se crea con éxito, es decir, no se lanza ninguna excepción en Constructor1")
     public void ClubDeportivoAltoRendimiento_DatosCorrectosConstructor1_SeCreaElClub(){
@@ -148,6 +147,18 @@ public class ClubDeportivoAltoRendimientoTest {
             new ClubDeportivoAltoRendimiento(nombre,2, max, inc);
         });
     }
+    
+    // Metodo #2: anyadirActividadConDatos
+    // -----------------------------------
+    // Si el array de datos es nulo, devolvemos una excepcion DONE
+    // Si no se pasa suficientes datos devuelve una excepción DONE
+    // Si se intenta añadir una actividad con el número de plazas mayor que el permitido, se establece el valor máximo DONE
+    // Si se intenta añadir una actividad con el formato de plazas incorrecto, devuelve una excepción DONE
+    // Si se intentar matricular a las personas con el formato negativo, se lanza una excepción DONE
+    // Si se intenta añadir una actividad con el formato de tarifa incorrecto, devuelve una excepción DONE
+    // Si en un club no se imparte ninguna actividad, el ingreso es nulo DONE
+    // Los ingresos del club deben ser coherentes con el incremento DONE
+    // Los ingresos del club deben ser coherentes con el incremento DONE
 
     @Test
     @DisplayName("Si el array de datos es nulo, devolvemos una excepcion")
@@ -208,6 +219,7 @@ public class ClubDeportivoAltoRendimientoTest {
         });    
     }
     @Test
+    @DisplayName("Si al intentar matricular a las personas con el formato negativo, se lanza una excepción")
     public void anyadirActividad_FormatoMatriculadosIncorrecto_DevuelveExcepcion() throws ClubException{
         //Arrange:
         String datos[] = new String[5];
@@ -221,7 +233,7 @@ public class ClubDeportivoAltoRendimientoTest {
         assertThrows(ClubException.class, ()->{
             clubAltoRendimiento.anyadirActividad(datos);
         });  
-    }
+    }    
     @Test
     @DisplayName("Si se intenta añadir una actividad con el formato de tarifa incorrecto, devuelve una excepción")
     public void anyadirActividad_FormatoTarifaIncorrecto_DevuelveExcepcion() throws ClubException{
@@ -239,7 +251,7 @@ public class ClubDeportivoAltoRendimientoTest {
         });  
     }
     @Test
-    @DisplayName("Los ingresos del club deben ser coherentes con el incremento")
+    @DisplayName("Si en un club no se imparte ninguna actividad, el ingreso es nulo")
     public void ingresos_NoHayActividades_DevuelveCero() throws ClubException{
         // Arrange:
         ClubDeportivoAltoRendimiento clubAltoRendimiento = new ClubDeportivoAltoRendimiento("Complejo Deportivo", 12, 10);  
