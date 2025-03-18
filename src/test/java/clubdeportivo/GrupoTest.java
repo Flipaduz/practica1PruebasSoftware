@@ -32,7 +32,7 @@ public class GrupoTest {
         int nplazas = 5;
         int nmatriculados = 5;
         double tarifa = 12;
-        // Assert & Act:        
+        //Act & Assert:
         assertThrows(ClubException.class, ()->{
             new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         });
@@ -46,7 +46,7 @@ public class GrupoTest {
         int nplazas = 5;
         int nmatriculados = 5;
         double tarifa = 12;
-        // Assert & Act:        
+        //Act & Assert:
         assertThrows(ClubException.class, ()->{
             new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         });
@@ -60,7 +60,7 @@ public class GrupoTest {
         int nplazas = 5;
         int nmatriculados = 5;
         double tarifa = 12;
-        // Assert & Act:        
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         });
@@ -69,12 +69,12 @@ public class GrupoTest {
     @DisplayName("No podemos crear grupo con actividad vacía")
     public void Grupo_actividadVacia_DevolvemosExcepcion(){
         // Arrange:
-        String codigo = "";
+        String codigo = "1";
         String actividad = "";
         int nplazas = 5;
         int nmatriculados = 5;
         double tarifa = 12;
-        // Assert & Act:        
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         });
@@ -89,7 +89,7 @@ public class GrupoTest {
         int nplazas = -5;
         int nmatriculados = 5;
         double tarifa = 12;
-        // Assert & Act:        
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         });
@@ -104,7 +104,7 @@ public class GrupoTest {
         int nplazas = 0;
         int nmatriculados = 5;
         double tarifa = 12;
-        // Assert & Act:        
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         });
@@ -119,7 +119,7 @@ public class GrupoTest {
         int nplazas = 10;
         int nmatriculados = -5;
         double tarifa = 12;
-        // Assert & Act:        
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         });
@@ -134,7 +134,7 @@ public class GrupoTest {
         int nplazas = 10;
         int nmatriculados = 5;
         double tarifa = 0;
-        // Assert & Act:        
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         });
@@ -149,7 +149,7 @@ public class GrupoTest {
         int nplazas = 10;
         int nmatriculados = 5;
         double tarifa = -10;
-        // Assert & Act:        
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         });
@@ -164,7 +164,7 @@ public class GrupoTest {
         int nplazas = 10;
         int nmatriculados = 50;
         double tarifa = 10;
-        // Assert & Act:        
+        // Act & Assert:
         assertThrows(ClubException.class, ()->{
             new Grupo(codigo, actividad, nplazas, nmatriculados, tarifa);
         });
