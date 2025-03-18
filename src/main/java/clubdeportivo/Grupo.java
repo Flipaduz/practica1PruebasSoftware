@@ -1,3 +1,7 @@
+//Realizado por:
+//Ángel Bayón Pazos
+//Daniil Gumeniuk
+//
 package clubdeportivo;
 
 public class Grupo {
